@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 class Voter extends Component {
   state = {
@@ -17,13 +19,22 @@ class Voter extends Component {
           onClick={(event) => this.updateVote(1)}
           disabled={optimisticVotes === 1}
         >
-          LIKE!
+          {" "}
+          <FontAwesomeIcon
+            color="rgb(51, 102, 153)"
+            size="2x"
+            icon={faChevronUp}
+          />
         </button>
         <button
           onClick={(event) => this.updateVote(-1)}
           disabled={optimisticVotes === -1}
         >
-          DISLIKE!!!
+          <FontAwesomeIcon
+            color="rgb(51, 102, 153)"
+            size="2x"
+            icon={faChevronDown}
+          />
         </button>
       </section>
     );

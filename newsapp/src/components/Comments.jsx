@@ -2,9 +2,7 @@ import * as api from "../utils/api";
 import React, { Component } from "react";
 import Voter from "./Voter";
 import Loader from "./Loader";
-import userContext from "./userContext";
-import ToggleView from "./ToggleView";
-import SingleArticle from "./SingleArticle";
+import userContext from "./UserContext";
 import CommentAdder from "./CommentAdder";
 
 class Comments extends Component {
@@ -24,19 +22,7 @@ class Comments extends Component {
         this.setState({ comments, isLoading: false });
       });
   }
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (
-  //     prevState.sort_by !== this.state.sort_by ||
-  //     prevState.order !== this.state.order
-  //   ) {
-  //     this.setState({
-  //       sort_by: this.state.sort_by,
-  //       order: this.state.order,
-  //       comments: this.state.comments,
-  //       // isLoading: false,
-  //     });
-  //   }
-  // }
+
   render() {
     console.log(this.context);
     const { comments, isLoading } = this.state;
@@ -44,7 +30,7 @@ class Comments extends Component {
     return (
       <section>
         {JSON.parse(localStorage.getItem("user")).username !== "guest" ? (
-          <CommentAdder />
+          <CommentAdder id={this.props.id} />
         ) : (
           <h2>Log in to comment</h2>
         )}

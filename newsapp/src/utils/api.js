@@ -1,11 +1,12 @@
 import axios from "axios";
 
-export const getArticles = (sort_by, order) => {
+export const getArticles = (sort_by, order, topic) => {
   return axios
     .get("https://khurram-news-app.herokuapp.com/api/articles", {
-      params: { sort_by, order },
+      params: { sort_by, order, topic },
     })
     .then((res) => {
+      console.log(res.data);
       return res.data.articles;
     });
 };
@@ -60,11 +61,11 @@ export const getUsers = () => {
 
 export const postComment = (id, username, body) => {
   return axios
-    .patch(
+    .post(
       `https://khurram-news-app.herokuapp.com/api/articles/${id}/comments`,
       {
-        username,
-        body,
+        username: username,
+        body: body,
       }
     )
     .then((res) => {

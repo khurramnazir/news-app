@@ -1,15 +1,14 @@
 .App {
   text-align: center;
-  font-family: 'Libre Baskerville', serif;
+  font-family: "Libre Baskerville", serif;
 }
 
 p {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 .content {
   margin: auto;
-
   display: flex;
   flex-direction: column;
   background-color: rgb(222, 227, 233);
@@ -24,7 +23,7 @@ header {
   padding: 30px;
   text-align: center;
   font-size: 1.4em;
-  background-color: #369;
+  background-color: rgb(51, 102, 153);
   color: white;
 }
 

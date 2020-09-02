@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
 import Loader from "./Loader";
-import { Link } from "@reach/router";
-import userContext from "./userContext";
-// import { useNavigate } from "@reach/router";
+
+import userContext from "./UserContext";
 
 import LoginToggle from "./LoginToggle";
 
@@ -44,9 +43,7 @@ class Login extends Component {
             })}
           </select>
         </label>
-        {/* <Link to={"/"}>
-          <button onClick={this.handleClick}>login</button>
-        </Link> */}
+
         <LoginToggle currentUser={this.state.currentUser} />
       </form>
     );
@@ -65,17 +62,6 @@ class Login extends Component {
     // clickEvent.preventDefault();
     // useNavigate("/", { state: { test: "test" } });
   };
-
-  //   if (this.state.order === "desc") {
-  //     api.getArticles(sort, this.state.order).then((res) => {
-  //       this.setState({ articles: res, sort_by: sort, order: "asc" });
-  //     });
-  //   } else {
-  //     api.getArticles(sort, this.state.order).then((res) => {
-  //       this.setState({ articles: res, sort_by: sort, order: "desc" });
-  //     });
-  //   }
-  // };
 }
 
 export default Login;

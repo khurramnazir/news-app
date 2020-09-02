@@ -1,16 +1,16 @@
-import React, { useContext } from "react";
-import userContext from "./userContext";
+import React from "react";
+
 import { Link } from "@reach/router";
 
 const LoginToggle = (props) => {
-  const { user, setUser } = useContext(userContext);
-
   return (
-    <Link to={"/"}>
+    <Link to="/">
       <button
         onClick={() => {
-          setUser(props.currentUser);
+          // setUser(props.currentUser);
+
           localStorage.setItem("user", JSON.stringify(props.currentUser));
+          window.location.reload();
         }}
       >
         Log in
