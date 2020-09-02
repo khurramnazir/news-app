@@ -1,11 +1,23 @@
 .App {
   text-align: center;
+  font-family: 'Libre Baskerville', serif;
 }
 
-main {
+p {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.content {
+  margin: auto;
+
   display: flex;
   flex-direction: column;
-  background-color: rgb(185, 189, 194);
+  background-color: rgb(222, 227, 233);
+  align-content: center;
+}
+
+.articlelist {
+  text-decoration: none;
 }
 
 header {
@@ -17,14 +29,23 @@ header {
 }
 
 ul {
+  text-decoration: none;
   list-style: none;
   padding: 40px;
 }
 
 li {
+  text-decoration: none;
   margin: 10px;
   border: solid;
-  border-color: red;
-  border-radius: 10px;
+  border-width: 1px;
+  border-color: grey;
+  border-radius: 3px;
   padding: 10px;
+  background: white;
+}
+
+#searchBox {
+  width: 1000px;
+  height: 25px;
 }
