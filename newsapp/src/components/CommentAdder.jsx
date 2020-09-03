@@ -3,22 +3,6 @@ import * as api from "../utils/api";
 import Loader from "./Loader";
 import styled from "styled-components";
 
-const StyledButton = styled.button`
-  background-color: white;
-  border-radius: 6px;
-  border: 1px solid black;
-
-  cursor: pointer;
-  color: black;
-  font-family: "Kumbh Sans", sans-serif;
-  font-size: 16px;
-  padding: 6px;
-  text-decoration: none;
-  margin: 3px;
-
-  width: 35%;
-`;
-
 const StyledInput = styled.input`
   background-color: white;
   border-radius: 12px;
@@ -48,6 +32,26 @@ class CommentAdder extends Component {
     });
   }
   render() {
+    const StyledButton = styled.button`
+      background-color: white;
+      border-radius: 6px;
+      border: 1px solid black;
+      cursor: pointer;
+      color: black;
+      font-family: "Kumbh Sans", sans-serif;
+      font-size: 16px;
+      padding: 6px;
+      text-decoration: none;
+      margin: 3px;
+      width: 35%;
+      ${this.state.body === "" &&
+      `
+      background-color: lightgrey;
+      color: grey;
+      `}
+    `;
+    const { body } = this.state;
+    const isEnabled = body.length > 0;
     return (
       <section>
         <form onSubmit={this.handleSubmit}>
@@ -59,7 +63,9 @@ class CommentAdder extends Component {
             onChange={this.handleChange}
           />{" "}
           <br />
-          <StyledButton type="submit">Post Comment</StyledButton>
+          <StyledButton disabled={!isEnabled} type="submit">
+            Post Comment
+          </StyledButton>
         </form>
         {this.state.isPosting && <Loader />}
       </section>

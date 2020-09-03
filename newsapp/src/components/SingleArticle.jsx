@@ -49,11 +49,15 @@ class SingleArticle extends Component {
           </h4>
           <p>{article.body}</p>
           <h4>Comments: {article.comment_count}</h4>
-          <Voter
-            id={article.article_id}
-            type={"articles"}
-            votes={article.votes}
-          />
+          {JSON.parse(localStorage.getItem("user")).username !== "guest" ? (
+            <Voter
+              id={article.article_id}
+              type={"articles"}
+              votes={article.votes}
+            />
+          ) : (
+            <h3>Log in to vote</h3>
+          )}
         </section>
 
         <ToggleView>

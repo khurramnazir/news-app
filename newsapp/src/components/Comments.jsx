@@ -92,11 +92,16 @@ class Comments extends Component {
                   {comment.created_at.substring(0, 10)}
                 </h4>
                 <p>{comment.body}</p>
-                <Voter
-                  id={comment.comment_id}
-                  type={"comments"}
-                  votes={comment.votes}
-                />
+                {JSON.parse(localStorage.getItem("user")).username !==
+                "guest" ? (
+                  <Voter
+                    id={comment.comment_id}
+                    type={"comments"}
+                    votes={comment.votes}
+                  />
+                ) : (
+                  <h3>Log in to vote</h3>
+                )}
                 {JSON.parse(localStorage.getItem("user")).username ===
                   comment.author && (
                   <CommentDeleter

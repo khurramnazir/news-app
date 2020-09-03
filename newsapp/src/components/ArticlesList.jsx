@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "@reach/router";
 import Voter from "./Voter";
 import styled from "styled-components";
+import * as api from "../utils/api";
 
 const ArticleTitle = styled.h3`
   text-decoration: none;
@@ -20,7 +21,7 @@ const ArticlesList = (articles) => {
               Posted by: {article.author} on{" "}
               {article.created_at.substring(0, 10)} in {article.topic}
             </h4>
-
+            {/* {api.getImage(article.topic)} */}
             <Link to={`articles/${article.article_id}/comments`}>
               <h4>Comments: {article.comment_count}</h4>
             </Link>
