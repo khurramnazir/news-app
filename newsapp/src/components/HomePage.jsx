@@ -1,9 +1,25 @@
 import React, { Component } from "react";
 import ArticlesList from "./ArticlesList";
 import * as api from "../utils/api";
+import styled from "styled-components";
 
 import Loader from "./Loader";
 import userContext from "./UserContext";
+
+const StyledButton = styled.button`
+  background-color: white;
+  border-radius: 12px;
+  border: 1px solid black;
+  display: inline-block;
+  cursor: pointer;
+  color: black;
+  font-family: "Kumbh Sans", sans-serif;
+  font-size: 12px;
+  padding: 6px;
+  text-decoration: none;
+  margin: 3px;
+  text-align: center;
+`;
 
 class HomePage extends Component {
   state = {
@@ -56,17 +72,17 @@ class HomePage extends Component {
     return (
       <main>
         <nav className="filter">
-          <label htmlFor="votes">
+          <label className="sortBar" htmlFor="votes">
             Sort Articles By
-            <button onClick={this.handleClick} name="votes">
+            <StyledButton onClick={this.handleClick} name="votes">
               Votes
-            </button>
-            <button onClick={this.handleClick} name="comment_count">
+            </StyledButton>
+            <StyledButton onClick={this.handleClick} name="comment_count">
               Comments
-            </button>
-            <button onClick={this.handleClick} name="created_at">
+            </StyledButton>
+            <StyledButton onClick={this.handleClick} name="created_at">
               Date
-            </button>
+            </StyledButton>
           </label>
           <br />
           <label htmlFor="topicsList">
@@ -80,6 +96,7 @@ class HomePage extends Component {
                 {" "}
                 -- select an option --{" "}
               </option>
+              <option>All</option>
               {topics.map((topic) => {
                 return (
                   <option key={topic.slug} value={topic.slug}>
@@ -93,7 +110,6 @@ class HomePage extends Component {
           <br />
         </nav>
         <ArticlesList articles={articles} />
-        <footer className="footer">THIS IS A FOOTER</footer>
       </main>
     );
   }
@@ -126,7 +142,11 @@ class HomePage extends Component {
     }
   };
   handleSelect = (clickEvent) => {
-    this.setState({ chosenTopic: clickEvent.target.value });
+    if (clickEvent.target.value !== "All") {
+      this.setState({ chosenTopic: clickEvent.target.value });
+    } else {
+      this.setState({ chosenTopic: "" });
+    }
   };
 }
 

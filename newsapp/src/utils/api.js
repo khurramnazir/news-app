@@ -69,7 +69,14 @@ export const postComment = (id, username, body) => {
       }
     )
     .then((res) => {
-      console.log(res.data);
-      // return res.data.comments;
+      return res.data.comment;
+    });
+};
+
+export const deleteComment = (id) => {
+  return axios
+    .delete(`https://khurram-news-app.herokuapp.com/api/comments/${id}`)
+    .then((res) => {
+      return res.status;
     });
 };

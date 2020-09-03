@@ -4,6 +4,23 @@ import Voter from "./Voter";
 import Loader from "./Loader";
 import userContext from "./UserContext";
 import CommentAdder from "./CommentAdder";
+import CommentDeleter from "./CommentDeleter";
+import styled from "styled-components";
+
+const StyledButton = styled.button`
+  background-color: white;
+  border-radius: 12px;
+  border: 1px solid black;
+  display: inline-block;
+  cursor: pointer;
+  color: black;
+  font-family: "Kumbh Sans", sans-serif;
+  font-size: 12px;
+  padding: 6px;
+  text-decoration: none;
+  margin: 3px;
+  text-align: center;
+`;
 
 class Comments extends Component {
   state = {
@@ -16,12 +33,25 @@ class Comments extends Component {
 
   static contextType = userContext;
   componentDidMount() {
+    this.getComments();
+  }
+
+  getComments = () => {
     api
       .getComments(this.props.id, this.props.sort_by, this.props.order)
       .then((comments) => {
         this.setState({ comments, isLoading: false });
       });
-  }
+  };
+
+  insertNewComment = (comment) => {
+    this.setState((currentState) => {
+      return {
+        comments: [comment, ...currentState.comments],
+        isLoading: false,
+      };
+    });
+  };
 
   render() {
     console.log(this.context);
@@ -29,24 +59,28 @@ class Comments extends Component {
     if (isLoading) return <Loader />;
     return (
       <section>
+        <h3>Comments</h3>
         {JSON.parse(localStorage.getItem("user")).username !== "guest" ? (
-          <CommentAdder id={this.props.id} />
+          <CommentAdder
+            id={this.props.id}
+            insertNewComment={this.insertNewComment}
+          />
         ) : (
-          <h2>Log in to comment</h2>
+          <h3>Log in to comment</h3>
         )}
 
         <nav className="filter">
           <label htmlFor="votes">
-            Sort Comments By
-            <button onClick={this.handleClick} name="votes">
+            Sort Comments By: <br />
+            <StyledButton onClick={this.handleClick} name="votes">
               Votes
-            </button>
-            <button onClick={this.handleClick} name="author">
+            </StyledButton>
+            <StyledButton onClick={this.handleClick} name="author">
               Author
-            </button>
-            <button onClick={this.handleClick} name="created_at">
+            </StyledButton>
+            <StyledButton onClick={this.handleClick} name="created_at">
               Date
-            </button>
+            </StyledButton>
           </label>
         </nav>
         <ul className="commentlist">
@@ -58,12 +92,18 @@ class Comments extends Component {
                   {comment.created_at.substring(0, 10)}
                 </h4>
                 <p>{comment.body}</p>
-
                 <Voter
                   id={comment.comment_id}
                   type={"comments"}
                   votes={comment.votes}
                 />
+                {JSON.parse(localStorage.getItem("user")).username ===
+                  comment.author && (
+                  <CommentDeleter
+                    id={comment.comment_id}
+                    updateComments={this.getComments}
+                  />
+                )}
               </li>
             );
           })}

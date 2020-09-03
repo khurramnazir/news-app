@@ -10,6 +10,54 @@ const StyledLink = styled(Link)`
   color: white;
 `;
 
+const StyledHeader = styled.header`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 15px;
+`;
+
+const StyledTitle = styled.section`
+  align-items: center;
+`;
+
+const StyledSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const StyledButtonSection = styled.section`
+  // display: flex;
+  // flex-direction: row;
+  // justify-content: center;
+  // align-items: center;
+`;
+
+const StyledP = styled.p`
+  font-size: 16px;
+  margin: 0px 0px 10px 0px;
+`;
+
+const StyledH1 = styled.h1`
+  margin: 16px;
+`;
+
+const StyledButton = styled.button`
+  background-color: white;
+  border-radius: 28px;
+  border: 1px solid black;
+  display: inline-block;
+  cursor: pointer;
+  color: black;
+  font-family: "Kumbh Sans", sans-serif;
+  font-size: 16px;
+  padding: 8px 18px;
+  text-decoration: none;
+  margin: 6px;
+`;
+
 class Header extends Component {
   state = {
     user: {},
@@ -20,40 +68,32 @@ class Header extends Component {
 
   render() {
     return (
-      <header className="main-head">
-        <StyledLink to="/">
-          <h1>Truthy News</h1>
-        </StyledLink>
+      <StyledHeader className="main-head">
+        <StyledTitle>
+          <StyledLink to="/">
+            <StyledH1>Truthy News</StyledH1>
+          </StyledLink>
+        </StyledTitle>
 
-        <Link to="/login">
-          <button>
-            <FontAwesomeIcon
-              color="rgb(51, 102, 153)"
-              size="2x"
-              icon={faSignInAlt}
-            />
-            <br />
-            Log In
-          </button>
-        </Link>
-        <button onClick={this.clearStorage}>
-          <FontAwesomeIcon
-            color="rgb(51, 102, 153)"
-            size="2x"
-            icon={faSignOutAlt}
+        <StyledSection>
+          <img
+            src={JSON.parse(localStorage.getItem("user")).avatar_url}
+            alt=""
+            width="50"
+            height="50"
           />
-          <br />
-          Log Out
-        </button>
 
-        <p>Logged in as {this.props.user.username} </p>
-        <img
-          src={JSON.parse(localStorage.getItem("user")).avatar_url}
-          alt=""
-          width="100"
-          height="100"
-        />
-      </header>
+          <StyledP>{this.props.user.username}</StyledP>
+
+          <StyledButtonSection>
+            <Link to="/login">
+              <StyledButton>Log In</StyledButton>
+            </Link>
+
+            <StyledButton onClick={this.clearStorage}>Log Out</StyledButton>
+          </StyledButtonSection>
+        </StyledSection>
+      </StyledHeader>
     );
   }
   clearStorage = (clickEvent) => {

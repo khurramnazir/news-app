@@ -9,6 +9,7 @@ import Login from "./components/Login";
 import SearchResults from "./components/SearchResults";
 import Comments from "./components/Comments";
 import userContext from "./components/UserContext";
+import ErrorPage from "./components/ErrorPage";
 
 class App extends Component {
   state = {
@@ -23,13 +24,13 @@ class App extends Component {
   componentDidMount() {
     this.setState({ user: JSON.parse(localStorage.getItem("user")) });
   }
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.user.username !== this.state.user.username) {
-      this.setState({
-        user: this.state.user,
-      });
-    }
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevState.user.username !== this.state.user.username) {
+  //     this.setState({
+  //       user: this.state.user,
+  //     });
+  //   }
+  // }
 
   render() {
     return (
@@ -42,6 +43,7 @@ class App extends Component {
             <SingleArticle path="articles/:id" />
             <SearchResults path="/searchresults" />
             <Comments path="articles/:id/comments" />
+            <ErrorPage default status={404} msg={"path not found"} />
           </Router>
         </userContext.Provider>
       </div>

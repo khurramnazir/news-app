@@ -40,14 +40,11 @@ footer {
 
 .App {
   display: grid;
-  grid-gap: 20px;
+  grid-gap: 0px;
   grid-template-areas:
     "header"
     "nav"
-    "content"
-    /* "sidebar"
-    "ad" */
-    "footer";
+    "content";
 }
 
 .main-head {
@@ -60,8 +57,4 @@ footer {
 
 .articlelist {
   grid-area: content;
-}
-
-.footer {
-  grid-area: footer;
 }

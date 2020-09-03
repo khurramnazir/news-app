@@ -31,7 +31,7 @@ const ArticlesList = (articles) => {
                 votes={article.votes}
               />
             ) : (
-              <h2>Log in to vote</h2>
+              <h3>Log in to vote</h3>
             )}
           </li>
         );
