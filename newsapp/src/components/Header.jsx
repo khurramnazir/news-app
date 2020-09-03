@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignInAlt, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
 import styled from "styled-components";
 
@@ -41,7 +39,13 @@ const StyledP = styled.p`
 `;
 
 const StyledH1 = styled.h1`
-  margin: 16px;
+  font-size: 55px;
+  margin: 16px 0px 3px;
+`;
+
+const StyledH3 = styled.h3`
+  margin: 0px 16px 16px;
+  font-size: 16px;
 `;
 
 const StyledButton = styled.button`
@@ -72,6 +76,7 @@ class Header extends Component {
         <StyledTitle>
           <StyledLink to="/">
             <StyledH1>Truthy News</StyledH1>
+            <StyledH3>Bringing you the truth(y)</StyledH3>
           </StyledLink>
         </StyledTitle>
 

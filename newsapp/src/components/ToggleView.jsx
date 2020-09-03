@@ -21,7 +21,6 @@ class ToggleView extends Component {
     isVisible: false,
   };
   render() {
-    console.log(this.props);
     return (
       <section>
         <StyledButton className="toggleView" onClick={this.handleClick}>

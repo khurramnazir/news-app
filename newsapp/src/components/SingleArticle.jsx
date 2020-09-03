@@ -23,11 +23,9 @@ class SingleArticle extends Component {
     api
       .getArticleById(this.props.id)
       .then((article) => {
-        console.log(article);
         this.setState({ article: article, isLoading: false });
       })
       .catch(({ response }) => {
-        console.log(response);
         this.setState({
           isLoading: false,
           err: { msg: response.data.msg, status: response.status },

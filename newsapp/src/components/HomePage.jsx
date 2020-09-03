@@ -4,7 +4,6 @@ import * as api from "../utils/api";
 import styled from "styled-components";
 
 import Loader from "./Loader";
-import userContext from "./UserContext";
 
 const StyledButton = styled.button`
   background-color: white;
@@ -28,10 +27,9 @@ class HomePage extends Component {
     isLoading: true,
     sort_by: "created_at",
     order: "desc",
-    currentUser: {},
+
     chosenTopic: "",
   };
-  static contextType = userContext;
 
   componentDidMount() {
     const { sort_by, order, chosenTopic } = this.state;
@@ -39,7 +37,7 @@ class HomePage extends Component {
       this.setState({
         articles,
         isLoading: false,
-        currentUser: this.context[0],
+
         chosenTopic: chosenTopic,
       });
     });
@@ -55,7 +53,6 @@ class HomePage extends Component {
         this.setState({
           articles,
           isLoading: false,
-          currentUser: this.context[0],
           chosenTopic: chosenTopic,
         });
       });
@@ -66,7 +63,6 @@ class HomePage extends Component {
   }
 
   render() {
-    console.log(this.state);
     const { articles, isLoading, topics } = this.state;
     if (isLoading) return <Loader />;
     return (
@@ -91,12 +87,9 @@ class HomePage extends Component {
               onChange={this.handleSelect}
               name="topicsList"
               id="topicsList"
+              defaultValue={this.state.chosenTopic}
             >
-              <option disabled selected value>
-                {" "}
-                -- select an option --{" "}
-              </option>
-              <option>All</option>
+              <option value={`${""}`}>All</option>
               {topics.map((topic) => {
                 return (
                   <option key={topic.slug} value={topic.slug}>

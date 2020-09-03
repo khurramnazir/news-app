@@ -8,7 +8,6 @@ import SingleArticle from "./components/SingleArticle";
 import Login from "./components/Login";
 import SearchResults from "./components/SearchResults";
 import Comments from "./components/Comments";
-import userContext from "./components/UserContext";
 import ErrorPage from "./components/ErrorPage";
 
 class App extends Component {
@@ -24,28 +23,19 @@ class App extends Component {
   componentDidMount() {
     this.setState({ user: JSON.parse(localStorage.getItem("user")) });
   }
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevState.user.username !== this.state.user.username) {
-  //     this.setState({
-  //       user: this.state.user,
-  //     });
-  //   }
-  // }
 
   render() {
     return (
       <div className="App">
-        <userContext.Provider value={this.state.user}>
-          <Header user={this.state.user} />
-          <Router className="content">
-            <Login path="/login" />
-            <HomePage path="/" />
-            <SingleArticle path="articles/:id" />
-            <SearchResults path="/searchresults" />
-            <Comments path="articles/:id/comments" />
-            <ErrorPage default status={404} msg={"path not found"} />
-          </Router>
-        </userContext.Provider>
+        <Header user={this.state.user} />
+        <Router className="content">
+          <Login path="/login" />
+          <HomePage path="/" />
+          <SingleArticle path="articles/:id" />
+          <SearchResults path="/searchresults" />
+          <Comments path="articles/:id/comments" />
+          <ErrorPage default status={404} msg={"path not found"} />
+        </Router>
       </div>
     );
   }

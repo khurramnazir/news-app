@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import * as api from "../utils/api";
 import Loader from "./Loader";
 
-import userContext from "./UserContext";
-
 import LoginToggle from "./LoginToggle";
 
 import { Link } from "@reach/router";
@@ -36,15 +34,12 @@ class Login extends Component {
     currentUser: {},
   };
 
-  static contextType = userContext;
-
   componentDidMount() {
     api.getUsers().then((users) => {
-      this.setState({ users, isLoading: false, currentUser: this.context[0] });
+      this.setState({ users, isLoading: false });
     });
   }
   render() {
-    console.log(this.state);
     const { users, isLoading } = this.state;
 
     if (isLoading) return <Loader />;
@@ -81,11 +76,6 @@ class Login extends Component {
     });
 
     this.setState({ currentUser: newArr[0] });
-  };
-
-  handleClick = (clickEvent) => {
-    // clickEvent.preventDefault();
-    // useNavigate("/", { state: { test: "test" } });
   };
 }
 

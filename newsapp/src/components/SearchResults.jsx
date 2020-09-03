@@ -1,6 +1,6 @@
 // import React from "react";
 import { Link } from "@reach/router";
-import FilterBar from "./FilterBar";
+
 import React, { Component } from "react";
 import Voter from "./Voter";
 import Loader from "./Loader";
@@ -52,7 +52,7 @@ class SearchResults extends Component {
             </button>
           </label>
           <br />
-          <FilterBar onSelect={this.handleSumbit} />
+
           <br />
         </nav>
         <ul className="searchResults">

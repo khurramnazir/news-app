@@ -6,7 +6,6 @@ export const getArticles = (sort_by, order, topic) => {
       params: { sort_by, order, topic },
     })
     .then((res) => {
-      console.log(res.data);
       return res.data.articles;
     });
 };
@@ -15,7 +14,6 @@ export const getArticleById = (id) => {
   return axios
     .get(`https://khurram-news-app.herokuapp.com/api/articles/${id}`)
     .then((res) => {
-      console.log(res.data.article);
       return res.data.article;
     });
 };
@@ -24,7 +22,6 @@ export const getTopics = () => {
   return axios
     .get("https://khurram-news-app.herokuapp.com/api/topics")
     .then((res) => {
-      // console.log(res.data);
       return res.data.topics;
     });
 };
@@ -35,7 +32,6 @@ export const getComments = (id, sort_by, order) => {
       params: { sort_by, order },
     })
     .then((res) => {
-      console.log(res.data);
       return res.data.comments;
     });
 };
@@ -46,7 +42,6 @@ export const patchVotes = (id, vote, type) => {
       inc_votes: vote,
     })
     .then((res) => {
-      console.log(res.data);
       // return res.data.comments;
     });
 };

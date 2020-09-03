@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "@reach/router";
 import Voter from "./Voter";
 import styled from "styled-components";
-import * as api from "../utils/api";
 
 const ArticleTitle = styled.h3`
   text-decoration: none;

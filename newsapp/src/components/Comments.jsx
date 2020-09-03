@@ -2,7 +2,7 @@ import * as api from "../utils/api";
 import React, { Component } from "react";
 import Voter from "./Voter";
 import Loader from "./Loader";
-import userContext from "./UserContext";
+
 import CommentAdder from "./CommentAdder";
 import CommentDeleter from "./CommentDeleter";
 import styled from "styled-components";
@@ -31,7 +31,6 @@ class Comments extends Component {
     comments: [],
   };
 
-  static contextType = userContext;
   componentDidMount() {
     this.getComments();
   }
@@ -54,7 +53,6 @@ class Comments extends Component {
   };
 
   render() {
-    console.log(this.context);
     const { comments, isLoading } = this.state;
     if (isLoading) return <Loader />;
     return (
@@ -118,7 +116,7 @@ class Comments extends Component {
   }
   handleClick = (clickEvent) => {
     this.setState({ isLoading: true });
-    console.log(this.state);
+
     const sort = clickEvent.target.name;
     const { id } = this.props;
     const { order } = this.state;
